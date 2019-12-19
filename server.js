@@ -20,7 +20,8 @@ app.engine('handlebars', exphbs({
   }))
 app.set('view engine','handlebars');
 
-mongoose.connect('mongodb://localhost/findItScraper')
+var MONGODB_URI = process.envMONGODB_URI || 'mongodb://localhost/heroku_qwzkrp6z'
+mongoose.connect(MONGODB_URI);
 var db =mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'))
