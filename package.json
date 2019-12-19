@@ -1,0 +1,30 @@
+{
+  "name": "finditscraper",
+  "version": "1.0.0",
+  "description": "App scrapes 'DudeIWantThat' website and displays cool products",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcuskrueger90/findItScraper.git"
+  },
+  "author": "Marcus Krueger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcuskrueger90/findItScraper/issues"
+  },
+  "homepage": "https://github.com/marcuskrueger90/findItScraper#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "logger": "0.0.1",
+    "mongoose": "^5.8.1",
+    "morgan": "^1.9.1"
+  }
+}
