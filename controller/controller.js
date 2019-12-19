@@ -7,9 +7,11 @@ var cheerio = require('cheerio');
 
 
 var Comment = require('../models/Comment.js')
-var Article = require('../models/Article.js')
+var FindIt = require('../models/Article.js')
 
-router.get('/',function(req, res){res.redirect('/articles')})
+router.get('/',function(req, res){
+    res.redirect('/articles')
+})
 
 router.get('/scrape',(req, res)=>
     request('http://www.dudeiwantthat.com', function(err, response,html){
@@ -18,7 +20,7 @@ router.get('/scrape',(req, res)=>
 
         var titlesArray = [];
 
-        $('div.product-details').each(function(i, element){
+        $('h2').each(function(i, element){
             var result = {};
 
             result.title = $(this)
@@ -34,9 +36,9 @@ router.get('/scrape',(req, res)=>
                     if (titlesArray.indexOf(result.title)== -1){
                         titlesArray.push(result.title);
 
-                        Article.count({title: result.title}, function(err, test){
+                        FindIt.count({title: result.title}, function(err, test){
                             if(test==0){
-                                var entry = new Article(result);
+                                var entry = new FindIt(result);
 
                                 entry.save(function(err, doc){
                                     if(err){
@@ -61,7 +63,7 @@ router.get('/scrape',(req, res)=>
 }))
 
 router.get('/articles', function(req, res){
-    Article.find().sort({_id: -1}).exec(function(err,doc){
+    FindIt.find().sort({_id: -1}).exec(function(err,doc){
         if(err){
             console.log(err);
         }else{
@@ -71,7 +73,7 @@ router.get('/articles', function(req, res){
     })
 })
 router.get('/articles-json', function(req, res){
-    Article.find({},function(err,doc){
+    FindIt.find({},function(err,doc){
         if (err){
             console.log(err)
         }else{
